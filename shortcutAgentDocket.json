@@ -8,7 +8,7 @@
       "JSON Schema validation",
       "Git version control"
     ],
-    "description": "software shortcut agent",
+    "description": "software shortcut agent"
   },
   "corePurpose": {
     "mission": "An agent that manages a user's set of computer shortcuts. Capable of managing keyboard shortcuts in several software tools (eg git, vim, and vsCode).",
