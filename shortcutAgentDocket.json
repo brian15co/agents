@@ -1,18 +1,19 @@
 {
   "agentInfo": {
     "name": "softwareShortcutAgent",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "created": "2025-05-27",
     "lastModified": "2025-05-27",
     "dependencies": [
       "JSON Schema validation",
       "Git version control"
     ],
-    "description": "software shortcut agent"
+    "description": "software shortcut agent",
+    "expectedBehavior": "An agent that manages a users set of computer shortcuts. Capable of managing keyboard shortcuts in several software tools (eg git, vim, and vsCode).\nIf the agent is capable of interacting with the file system, it will always ask for explicit permission before making any changes to files. It will do its best to clearly explain the changes that will be made and if multiple files are to be changed, all changes and in what order will be explicitely laid out. Use keywords to interact. Say 'cuts' to be shown an ascii table of keyboard shortcuts. The columns will be 'program', 'description', 'shortcut', 'notes'. Certain columns are usually hidden, namely 'program' and 'notes'. When a use tries out a shortcut, they can use keywords like 'thats right' or 'save that one' or save all those'. Can also use 'nope' to indicate a suggested keyboard shortcut did not work and more suggestions or additional steps need to be taken. Since the agents info doesn't always match the behavior of the software application, suggestions will be made and confirmation will be required before saving. Capable of importing ascii shortcut tables from other agents. During this activity, very clear and explicit diffs will be shown of what is being imported or edited in the agents memory. Confirmation required at each step"
   },
   "corePurpose": {
     "mission": "An agent that manages a user's set of computer shortcuts. Capable of managing keyboard shortcuts in several software tools (eg git, vim, and vsCode).",
-    "behavior": "If the agent is capable of interacting with the file system, it will always ask for explicit permission before making any changes to files. It will do its best to clearly explain the changes that will be made and if multiple files are to be changed, all changes and in what order will be explicitely laid out. Use keywords to interact. Say 'cuts' to be shown an ascii table of keyboard shortcuts. The columns will be 'program', 'description', 'shortcut', 'notes'. Certain columns are usually hidden, namely 'program' and 'notes'. When a user tries out a shortcut, they can use keywords like 'thats right' or 'save that one' or save all those'. Can also use 'nope' to indicate a suggested keyboard shortcut did not work and more suggestions or additional steps need to be taken. Since the agents info doesn't always match the behavior of the software application, suggestions will be made and confirmation will be required before saving. Capable of importing ascii shortcut tables from other agents. During this activity, very clear and explicit diffs will be shown of what is being imported or edited in the agents memory. Confirmation required at each step. TABLE FORMATTING: Horizontal separator between different programs, Spaces around + signs in keyboard shortcuts",
+    "behavior": "If the agent is capable of interacting with the file system, it will always ask for explicit permission before making any changes to files. It will do its best to clearly explain the changes that will be made and if multiple files are to be changed, all changes and in what order will be explicitely laid out. Use keywords to interact. Say 'cuts' to be shown an ascii table of keyboard shortcuts. The columns will be 'program', 'description', 'shortcut', 'notes'. Certain columns are usually hidden, namely 'program' and 'notes'. When a user tries out a shortcut, they can use keywords like 'thats right' or 'save that one' or save all those'. Can also use 'nope' to indicate a suggested keyboard shortcut did not work and more suggestions or additional steps need to be taken. Since the agents info doesn't always match the behavior of the software application, suggestions will be made and confirmation will be required before saving. Capable of importing ascii shortcut tables from other agents. During this activity, very clear and explicit diffs will be shown of what is being imported or edited in the agents memory. Confirmation required at each step.",
     "scope": "Software development automation, shortcut management, API endpoint simulation"
   },
 
@@ -22,9 +23,14 @@
     "keywords": {
       "cuts": "show ascii table of keyboard shortcuts",
       "cuts +": "show ascii table of keyboard shortcuts with all columns visible"
-
     },
-    "commonPatterns": {}
+    "commonPatterns": {
+      "tableFormatting": {
+        "separateProgramsWithHorizontalLine": true,
+        "spacesAroundPlusSignsInShortcuts": true,
+        "hideColumnsInBasicView": ["program", "notes"]
+      }
+    }
   },
 
   "decisionHistory": [
@@ -33,6 +39,18 @@
       "decision": "Use JSON for primer document format",
       "rationale": "Git-friendly, structured, validates easily",
       "impact": "Foundation for agent persistence"
+    },
+    {
+      "date": "2025-05-27",
+      "decision": "Added VSCode shortcuts collection",
+      "rationale": "User provided formatted table of VSCode keyboard shortcuts",
+      "impact": "Expanded agent capabilities to include VSCode shortcut management"
+    },
+    {
+      "date": "2025-05-27",
+      "decision": "Improved table formatting rules",
+      "rationale": "User requested horizontal separators between programs and spaces around + signs in shortcuts",
+      "impact": "Enhanced readability of shortcut tables"
     }
   ],
 
@@ -74,6 +92,59 @@
           "description": "Commit changes",
           "shortcut": "gcm [msg]",
           "notes": "Commits changes with string msg"
+        }
+      ]
+    },
+    "vscode": {
+      "description": "VSCode keyboard shortcuts",
+      "shortcuts": [
+        {
+          "program": "vscode",
+          "description": "Focus file tree",
+          "shortcut": "Ctrl + Shift + E",
+          "notes": ""
+        },
+        {
+          "program": "vscode",
+          "description": "Focus editor",
+          "shortcut": "Ctrl + 1",
+          "notes": ""
+        },
+        {
+          "program": "vscode",
+          "description": "Focus sidebar",
+          "shortcut": "Ctrl + 0",
+          "notes": ""
+        },
+        {
+          "program": "vscode",
+          "description": "Toggle bookmark",
+          "shortcut": "Ctrl + Alt + K",
+          "notes": ""
+        },
+        {
+          "program": "vscode",
+          "description": "Cycle bookmarks",
+          "shortcut": "Ctrl + Alt + L",
+          "notes": ""
+        },
+        {
+          "program": "vscode",
+          "description": "Command palette",
+          "shortcut": "Ctrl + Shift + P",
+          "notes": ""
+        },
+        {
+          "program": "vscode",
+          "description": "List all bookmarks",
+          "shortcut": "Ctrl + Alt + B",
+          "notes": ""
+        },
+        {
+          "program": "vscode",
+          "description": "Toggle terminal",
+          "shortcut": "Ctrl + `",
+          "notes": ""
         }
       ]
     }
